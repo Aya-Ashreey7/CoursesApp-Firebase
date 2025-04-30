@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>filter courses</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark " data-bs-theme="dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Courses Management</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02"
+                aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor02">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/index.html">courses </a>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/filter.html">Filtering </a>
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item d-none" id="userEmailNav">
+                        <span class="nav-link" id="userEmail"></span>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link " href="/signIn.html" id="signInNav">Sign in </a>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="signUp.html" id="signUpNav">Sign Up </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="signUp.html" onclick="Logout()" id="signOutNav">Sign Out </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- ============================================================= -->
+    <div class="w-50 m-auto mt-5">
+        <form class="border p-5 border-primary">
+            <input type="hidden" name="cID" value="" id="cID">
+
+            <div class="mb-3">
+                <label class="form-label">Field</label>
+                <select id="filterField" class="form-select">
+                    <option value="name">Course Name</option>
+                    <option value="available">Available</option>
+                    <option value="hours">Hours</option>
+                    <option value="finalMark">Final Mark</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Operation</label>
+                <select id="filterOp" class="form-select">
+                    <option value="==">Equal</option>
+                    <option value=">">Greater Than</option>
+                    <option value="<">Less Than</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Value</label>
+                <input type="text" id="filterValue" class="form-control" />
+            </div>
+            <!-- Error display area -->
+            <!-- <div id="errorMessages" class="alert alert-danger d-none"></div> -->
+
+            <button id="formBtn" type="button" class="btn btn-primary w-100">
+                Apply Filter</button>
+        </form>
+
+    </div>
+    <!-- =============== table =========== -->
+    <div class="container">
+        <table class="table table-bordered border-primary mt-3 text-center">
+            <thead>
+                <tr>
+                    <th scope="col">Course Name</th>
+                    <th scope="col">Final Mark</th>
+                    <th scope="col">Hours</th>
+                    <th scope="col">Available</th>
+                    <!-- <th scope="col">Edite</th>
+                    <th scope="col">Delete</th> -->
+
+                </tr>
+            </thead>
+            <tbody id="courseTableBody">
+                <!-- Data will be populated here -->
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+
+    <script type="module">
+        import { DisplayFilredData,Logout ,filterCourses} from './filter.js';
+        window.DisplayFilredData = DisplayFilredData
+        window.Logout=Logout
+        window.filterCourses=filterCourses
+
+        document.getElementById("formBtn").addEventListener("click", () => {
+            const field = document.getElementById("filterField").value;
+            const operation = document.getElementById("filterOp").value;
+            const value = document.getElementById("filterValue").value.trim();
+
+            DisplayFilredData(field, operation, value);
+        });
+    </script>
+    <!-- <script type="module">
+        import { Logout } from './main.js';
+        // window.DisplayCourses = DisplayCourses
+        // window.deleteCourse = deleteCourse
+        // window.editCourse = editCourse
+        window.Logout = Logout
+
+       
+    </script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

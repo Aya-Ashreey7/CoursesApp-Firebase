@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+        crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark " data-bs-theme="dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Courses Management</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02"
+                aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor02">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/index.html">courses </a>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/filter.html">Filtering </a>
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item d-none" id="userEmailNav">
+                        <span class="nav-link" id="userEmail"></span>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link " href="/signIn.html" id="signInNav">Sign in </a>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="signUp.html" id="signUpNav">Sign Up </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="signUp.html" onclick="Logout()" id="signOutNav">Sign Out </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- ====================================== -->
+    <div class="w-50 m-auto mt-5">
+        <form class="border p-5 border-primary">
+            <input type="hidden" name="cID" value="" id="cID">
+            <div class="mb-3">
+                <label for="cName" class="form-label">Enter Course Name</label>
+                <input type="text" class="form-control" id="cName" name="cName" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+                <label for="finalMark" class="form-label">Final Mark</label>
+                <input type="number" class="form-control" id="finalMark" name="finalMark" aria-describedby="emailHelp">
+            </div>
+
+            <div class="mb-3">
+                <label for="hours" class="form-label">Hours</label>
+                <input type="number" min="6" class="form-control" id="hours" name="hours" aria-describedby="emailHelp">
+            </div>
+
+            <div class="mb-3">
+                <input class="form-check-input" type="checkbox" id="course-available" />
+                <label class="form-check-label" for="course-available">
+                    Available
+                </label>
+            </div>
+            <!-- Error display area -->
+            <div id="errorMessages" class="alert alert-danger d-none"></div>
+            
+            <button id="formBtn" type="submit" onclick="addCourseData(event)" class="btn btn-primary w-100">Add
+                Course</button>
+        </form>
+       
+    </div>
+    <div class="container">
+         <!-- =============== table =========== -->
+         <table class="table table-bordered border-primary mt-3 text-center">
+            <thead>
+                <tr>
+                    <th scope="col">Course Name</th>
+                    <th scope="col">Final Mark</th>
+                    <th scope="col">Hours</th>
+                    <th scope="col">Available</th>
+                    <th scope="col">Edite</th>
+                    <th scope="col">Delete</th>
+
+                </tr>
+            </thead>
+            <tbody id="courseTableBody">
+                <!-- Data will be populated here -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- =========================================== -->
+    <script type="module">
+        import { addCourseData, DisplayCourses, deleteCourse, editCourse ,Logout} from './main.js';
+        window.addCourseData = addCourseData
+        window.DisplayCourses = DisplayCourses
+        window.deleteCourse = deleteCourse
+        window.editCourse = editCourse
+        window.Logout = Logout
+
+    </script>
+</body>
+
+</html>
